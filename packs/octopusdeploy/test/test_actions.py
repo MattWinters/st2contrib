@@ -2,6 +2,8 @@ import unittest
 
 from actions.add_machine import AddMachineAction
 
+from test import FakeAction
+
 __all__ = [
     'ActionTestCase'
 ]

@@ -2,6 +2,7 @@ __all__ = [
     'OctopusError',
 ]
 
+
 class OctopusError(Exception):
     def __init__(self, response_text, response_code):
         self.response_text = response_text
