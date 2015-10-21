@@ -12,7 +12,7 @@ except ImportError:
                'pip install json')
     raise ImportError(message)
 
-from octopus_error import OctopusError
+from actions.lib.errors import OctopusError
 from st2actions.runners.pythonrunner import Action
 
 __all__ = [
@@ -55,11 +55,4 @@ class OctopusDeployAction(Action):
         return response.json()
 
 
-class OctopusDeployClient(object):
-    def __init__(self, api_key, host, port):
-        self.api_key = api_key
-        self.host = host
-        self.port = port
-        self.headers = {'X-Octopus-ApiKey': self.api_key,
-                        'Content-type': 'application/json',
-                        'Accept': 'text/plain'}
+
