@@ -41,6 +41,10 @@ class CreateVMAction(BaseAction):
         if location_id:
             kwargs['location'] = location
 
+        if 'create_node_kwargs' in self.config['credentials'][credentials]:
+            assert isinstance(self.config['credentials'][credentials]['create_node_kwargs'], dict)
+            kwargs.update(self.config['credentials'][credentials]['create_node_kwargs'])
+
         self.logger.info('Creating node...')
 
         node = driver.create_node(**kwargs)
