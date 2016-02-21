@@ -1,0 +1,11 @@
+---
+  name: "list_namespaces"
+  entry_point: "generic_kubernetes_action.py"
+  pack: "kubernetes"
+  description: "List available namespaces."
+  runner_type: run-python
+  parameters:
+    payload:
+      type: object
+    config:
+      type: object
