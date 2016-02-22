@@ -5,7 +5,7 @@
   description: "List available namespaces."
   runner_type: run-python
   parameters:
-    payload:
-      type: object
-    config:
-      type: object
+    method_name:
+      immutable: true
+      type: string
+      default: 'list_namespaces'

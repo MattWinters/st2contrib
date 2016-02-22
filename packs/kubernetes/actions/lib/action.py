@@ -1,4 +1,6 @@
 from st2actions.runners.pythonrunner import Action
+import requests
+from requests.auth import HTTPBasicAuth
 
 
 class BaseAction(Action):
@@ -13,6 +15,13 @@ class BaseAction(Action):
         user = self.config['user']
         password = self.config['password']
         base_api = self.config['kubernetes_api_url']
+        verify = self.config.get('verify', True)
 
         # TODO : Instantiate API connection and return
-        return None
+        self.client = requests.get(base_api, auth=HTTPBasicAuth(user, password),
+                                   verify=verify, stream=True)
+        return self.client
+
+    def _do_function(self, module, action, **kwargs):
+        result = getattr(module, action)(**kwargs)
+        return self.resultsets.formatter(result)
